@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polres_app/auth/login.dart';
 import 'package:polres_app/auth/verify_pin.dart';
 import 'verify_pin.dart';
 
@@ -30,6 +31,10 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: BackButton(
+          color: Colors.black,
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
@@ -166,7 +171,9 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 TextButton(
                   onPressed: () {
-                    print('ok');
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                      return LoginPage();
+                    }));
                   },
                   child: Text(
                     'Sudah punya akun? Masuk.',

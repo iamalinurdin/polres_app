@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:polres_app/pages/home.dart';
 
 class VerifyPinPage extends StatefulWidget {
   const VerifyPinPage({Key? key}) : super(key: key);
@@ -17,7 +18,10 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        // elevation: .5,
+        elevation: 0,
+        leading: BackButton(
+          color: Colors.black,
+        ),
       ),
       body: Builder(
         builder: (context) => Container(
@@ -50,7 +54,9 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                 textDirection: TextDirection.rtl,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    print('ok');
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                      return HomePage();
+                    }));
                   },
                   icon: Icon(Icons.arrow_right_alt_rounded),
                   label: Text('Continue'),

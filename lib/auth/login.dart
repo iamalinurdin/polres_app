@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 TextButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                       return RegisterPage();
                     }));
                   },

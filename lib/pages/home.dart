@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polres_app/services/activity.dart';
 import 'package:polres_app/pages/create.dart';
+import 'package:timelines/timelines.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,15 +20,29 @@ class _HomePageState extends State<HomePage> {
     Activity(user: 'Mrs. X', time: '17:00', activity: 'Input data target baru'),
   ];
 
+  int currentStep = 0;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Menu'),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.red[900],
+        elevation: 0,
+        automaticallyImplyLeading: false,
       ),
+      // body: Timeline.tileBuilder(
+      //   builder: TimelineTileBuilder.fromStyle(
+      //     contentsAlign: ContentsAlign.alternating,
+      //     contentsBuilder: (context, index) => Padding(
+      //       padding: const EdgeInsets.all(24.0),
+      //       child: Text('Timeline Event $index'),
+      //     ),
+      //     itemCount: 10,
+      //   ),
+      // ),
       body: ListView(
-        padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,7 +129,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Column(
             children: activities.map((activity) => activityCard(activity)).toList()
-          )
+          ),
         ],
       ),
     );

@@ -18,14 +18,22 @@ class _CreateTargetPageState extends State<CreateTargetPage> {
             color: Colors.black
           ),
         ),
+        // bottom: PreferredSize(
+        //   child: Align(
+        //     alignment: Alignment.topLeft,
+        //     child: Text('${DateTime.now()}'),
+        //   ),
+        //   preferredSize: Size.fromHeight(10),
+        // ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: BackButton(
-          color: Colors.black,
+          color: Colors.red[900],
         ),
+        centerTitle: false,
       ),
       body: ListView(
-        padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         children: [
           TextFormField(
             decoration: InputDecoration(
@@ -96,15 +104,21 @@ class _CreateTargetPageState extends State<CreateTargetPage> {
                   child: Icon(
                     Icons.person,
                     size: 100,
-                    color: Colors.black,
+                    color: Colors.grey[400],
                   ),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.transparent,
-                    elevation: 0
+                    elevation: 0,
                   ),
                 ),
+                SizedBox(width: 20),
                 Expanded(
-                  child: Text('Klik gambar untuk upload foto tersangka')
+                  child: Text(
+                    'Klik gambar untuk upload foto tersangka',
+                    style: TextStyle(
+                      color: Colors.grey[400]
+                    ),
+                  )
                 )
               ],
             ),
