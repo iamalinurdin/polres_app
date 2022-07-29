@@ -63,15 +63,25 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Switch(
-                value: remember,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-                activeColor: Colors.red[700],
-                activeTrackColor: Colors.red[500],
+              Row(
+                children: [
+                  Switch(
+                    value: remember,
+                    onChanged: (value) {
+                      setState(() {
+                        remember = value;
+                      });
+                    },
+                    activeColor: Colors.red[700],
+                    activeTrackColor: Colors.red[500],
+                  ),
+                  Text(
+                    'Remember me',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold
+                    ),
+                  )
+                ],
               ),
               TextButton(
                   onPressed: (){
