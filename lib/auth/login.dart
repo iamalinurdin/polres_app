@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polres_app/auth/register.dart';
+import 'package:polres_app/auth/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -73,7 +74,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextButton(
                   onPressed: (){
-
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return ResetPasswordPage();
+                    }));
                   },
                   child: Text(
                     'Forgot password?',
