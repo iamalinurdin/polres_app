@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polres_app/auth/register.dart';
 import 'package:polres_app/auth/reset_password.dart';
+import 'package:polres_app/pages/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -91,7 +92,9 @@ class _LoginPageState extends State<LoginPage> {
             textDirection: TextDirection.rtl,
             child: ElevatedButton.icon(
               onPressed: () {
-                print('ok');
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HomePage();
+                }));
               },
               icon: Icon(Icons.arrow_right_alt_rounded),
               label: Text('Masuk'),
