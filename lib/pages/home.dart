@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:polres_app/pages/search.dart';
+import 'package:polres_app/pages/setting.dart';
 import 'package:polres_app/services/activity.dart';
 import 'package:polres_app/pages/create.dart';
 import 'package:timelines/timelines.dart';
@@ -30,6 +32,16 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.red[900],
         elevation: 0,
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SettingPage();
+              }));
+            },
+            icon: Icon(Icons.settings)
+          )
+        ],
       ),
       // body: Timeline.tileBuilder(
       //   builder: TimelineTileBuilder.fromStyle(
@@ -78,7 +90,9 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: TextButton(
                   onPressed: () {
-                    print('penambahan data');
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return SearchPage();
+                    }));
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

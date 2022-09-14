@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'auth/register.dart';
 import 'package:polres_app/auth/login.dart';
+import 'package:polres_app/pages/welcome.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Scaffold(
-      body: LoginPage(),
-    ),
+    home: WelcomePage()
   ));
 }
 

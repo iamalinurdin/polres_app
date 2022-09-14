@@ -17,129 +17,131 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Login',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30.0
-            ),
-          ),
-          SizedBox(height: 20.0),
-          TextFormField(
-            decoration: InputDecoration(
-                prefixIcon: Icon(Icons.mail),
-                hintText: 'NRP',
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0)
-                )
-            ),
-          ),
-          SizedBox(height: 20.0),
-          TextFormField(
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.lock),
-              hintText: 'Password',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0)
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Login',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0
               ),
-              suffixIcon: IconButton(
-                icon: Icon(showPassword ? Icons.visibility : Icons.visibility_off),
-                onPressed: () {
-                  setState(() {
-                    showPassword = !showPassword;
-                  });
-                },
-              )
             ),
-            obscureText: showPassword,
-          ),
-          SizedBox(height: 5.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Switch(
-                    value: remember,
-                    onChanged: (value) {
-                      setState(() {
-                        remember = value;
-                      });
-                    },
-                    activeColor: Colors.red[700],
-                    activeTrackColor: Colors.red[500],
-                  ),
-                  Text(
-                    'Remember me',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),
+            SizedBox(height: 20.0),
+            TextFormField(
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.mail),
+                  hintText: 'NRP',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0)
                   )
-                ],
               ),
-              TextButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return ResetPasswordPage();
-                    }));
-                  },
-                  child: Text(
-                    'Forgot password?',
-                    style: TextStyle(
-                        color: Colors.black
-                    ),
-                  )
-              )
-            ],
-          ),
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: ElevatedButton.icon(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return HomePage();
-                }));
-              },
-              icon: Icon(Icons.arrow_right_alt_rounded),
-              label: Text('Masuk'),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.red[900],
-                  alignment: Alignment.center,
-                  shape: RoundedRectangleBorder(
+            ),
+            SizedBox(height: 20.0),
+            TextFormField(
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock),
+                  hintText: 'Password',
+                  border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0)
                   ),
-                  minimumSize: Size.fromHeight(50)
+                  suffixIcon: IconButton(
+                    icon: Icon(showPassword ? Icons.visibility : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    },
+                  )
               ),
+              obscureText: showPassword,
             ),
-          ),
-          SizedBox(height: 20.0),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+            SizedBox(height: 5.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                      return RegisterPage();
-                    }));
-                  },
-                  child: Text(
-                    'Belum punya akun? Daftar.',
-                    style: TextStyle(
-                        color: Colors.black
+                Row(
+                  children: [
+                    Switch(
+                      value: remember,
+                      onChanged: (value) {
+                        setState(() {
+                          remember = value;
+                        });
+                      },
+                      activeColor: Colors.red[700],
+                      activeTrackColor: Colors.red[500],
                     ),
-                  ),
+                    Text(
+                      'Remember me',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold
+                      ),
+                    )
+                  ],
                 ),
+                TextButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return ResetPasswordPage();
+                      }));
+                    },
+                    child: Text(
+                      'Forgot password?',
+                      style: TextStyle(
+                          color: Colors.black
+                      ),
+                    )
+                )
               ],
             ),
-          ),
-        ],
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return HomePage();
+                  }));
+                },
+                icon: Icon(Icons.arrow_right_alt_rounded),
+                label: Text('Masuk'),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.red[900],
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                    ),
+                    minimumSize: Size.fromHeight(50)
+                ),
+              ),
+            ),
+            SizedBox(height: 20.0),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                        return RegisterPage();
+                      }));
+                    },
+                    child: Text(
+                      'Belum punya akun? Daftar.',
+                      style: TextStyle(
+                          color: Colors.black
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
