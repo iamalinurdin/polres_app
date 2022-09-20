@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polres_app/pages/maps.dart';
 import 'package:polres_app/pages/search.dart';
 import 'package:polres_app/pages/setting.dart';
 import 'package:polres_app/services/activity.dart';
@@ -132,6 +133,38 @@ class _HomePageState extends State<HomePage> {
                           'Customize',
                           style: TextStyle(
                             color: Colors.red[900]
+                          ),
+                          textAlign: TextAlign.center,
+                        )
+                      ],
+                    )
+                ),
+              ),
+
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return MapsPage();
+                      }));
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.map,
+                          size: 50,
+                          color: Colors.red[900],
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Peta',
+                          style: TextStyle(
+                              color: Colors.red[900]
                           ),
                           textAlign: TextAlign.center,
                         )

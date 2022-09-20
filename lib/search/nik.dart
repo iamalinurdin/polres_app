@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polres_app/pages/evidence.dart';
 
 class NikPage extends StatefulWidget {
   const NikPage({Key? key}) : super(key: key);
@@ -43,7 +44,9 @@ class _NikPageState extends State<NikPage> {
               height: 40,
               child: TextButton(
                 onPressed: () {
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return EvidencePage();
+                  }));
                 },
                 child: Text(
                   'Cari',
