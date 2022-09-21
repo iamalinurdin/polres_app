@@ -34,24 +34,7 @@ class _MapsPageState extends State<MapsPage> {
         ),
         centerTitle: false,
       ),
-      body: FlutterMap(
-        options: MapOptions(
-          center: LatLng(51.509364, -0.128928),
-          zoom: 9.2,
-        ),
-        nonRotatedChildren: [
-          AttributionWidget.defaultWidget(
-            source: 'OpenStreetMap contributors',
-            onSourceTapped: null,
-          ),
-        ],
-        children: [
-          TileLayer(
-            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-            userAgentPackageName: 'com.example.app',
-          ),
-        ],
-      );
+      body: Text('ok')
     );
   }
 }

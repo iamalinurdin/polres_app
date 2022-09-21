@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:polres_app/auth/register.dart';
 import 'package:polres_app/auth/reset_password.dart';
 import 'package:polres_app/pages/home.dart';
+import 'package:polres_app/services/auth.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,10 +17,20 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   bool remember = false;
-  bool showPassword = false;
+  bool showPassword = true;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  void login () async {
+    var response = await Auth().login(email.text, password.text);
+
+    return response['token'];
+  }
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _textEditingController = TextEditingController();
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
@@ -37,9 +51,10 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.mail),
                   hintText: 'NRP',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0)
+                    borderRadius: BorderRadius.circular(10.0)
                   )
               ),
+              controller: email,
             ),
             SizedBox(height: 20.0),
             TextFormField(
@@ -58,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   )
               ),
+              controller: password,
               obscureText: showPassword,
             ),
             SizedBox(height: 5.0),
@@ -102,10 +118,15 @@ class _LoginPageState extends State<LoginPage> {
             Directionality(
               textDirection: TextDirection.rtl,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return HomePage();
-                  }));
+                onPressed: () async {
+                  var response = await Auth().login(email.text, password.text);
+                  var token = response['token'];
+
+                  if (token != null) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return HomePage();
+                    }));
+                  }
                 },
                 icon: Icon(Icons.arrow_right_alt_rounded),
                 label: Text('Masuk'),
