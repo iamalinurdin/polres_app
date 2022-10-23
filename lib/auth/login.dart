@@ -15,17 +15,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   bool remember = false;
   bool showPassword = true;
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-
-  void login () async {
-    var response = await Auth().login(email.text, password.text);
-
-    return response['token'];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +33,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Text(
               'Login',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
             ),
             SizedBox(height: 20.0),
             TextFormField(
@@ -51,9 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.mail),
                   hintText: 'NRP',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0)
-                  )
-              ),
+                      borderRadius: BorderRadius.circular(10.0))),
               controller: email,
             ),
             SizedBox(height: 20.0),
@@ -62,17 +50,16 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.lock),
                   hintText: 'Password',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0)
-                  ),
+                      borderRadius: BorderRadius.circular(10.0)),
                   suffixIcon: IconButton(
-                    icon: Icon(showPassword ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(
+                        showPassword ? Icons.visibility : Icons.visibility_off),
                     onPressed: () {
                       setState(() {
                         showPassword = !showPassword;
                       });
                     },
-                  )
-              ),
+                  )),
               controller: password,
               obscureText: showPassword,
             ),
@@ -94,25 +81,21 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Text(
                       'Remember me',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
                 TextButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return ResetPasswordPage();
                       }));
                     },
                     child: Text(
                       'Forgot password?',
-                      style: TextStyle(
-                          color: Colors.black
-                      ),
-                    )
-                )
+                      style: TextStyle(color: Colors.black),
+                    ))
               ],
             ),
             Directionality(
@@ -120,10 +103,10 @@ class _LoginPageState extends State<LoginPage> {
               child: ElevatedButton.icon(
                 onPressed: () async {
                   var response = await Auth().login(email.text, password.text);
-                  var token = response['token'];
 
-                  if (token != null) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  if (response['success']) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return HomePage();
                     }));
                   }
@@ -134,10 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                     primary: Colors.red[900],
                     alignment: Alignment.center,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)
-                    ),
-                    minimumSize: Size.fromHeight(50)
-                ),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    minimumSize: Size.fromHeight(50)),
               ),
             ),
             SizedBox(height: 20.0),
@@ -147,15 +128,14 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
                         return RegisterPage();
                       }));
                     },
                     child: Text(
                       'Belum punya akun? Daftar.',
-                      style: TextStyle(
-                          color: Colors.black
-                      ),
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                 ],
@@ -167,4 +147,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
