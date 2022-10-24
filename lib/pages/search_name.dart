@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:polres_app/search/name.dart';
 import 'package:polres_app/search/nik.dart';
-import 'package:polres_app/search/number.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class SearchNamePage extends StatefulWidget {
+  const SearchNamePage({Key? key}) : super(key: key);
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<SearchNamePage> createState() => _SearchNamePageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchNamePageState extends State<SearchNamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,10 +60,7 @@ class _SearchPageState extends State<SearchPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15))),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return NamePage();
-                    }));
+                    print('pencarian nama');
                   },
                 ),
               ),
@@ -101,10 +96,7 @@ class _SearchPageState extends State<SearchPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15))),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return NumberPage();
-                    }));
+                    print('pencarian nomor lp');
                   },
                 ),
               ),

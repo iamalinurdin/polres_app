@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:polres_app/services/suspect.dart';
 
 class EvidencePage extends StatefulWidget {
-  const EvidencePage({Key? key}) : super(key: key);
+  const EvidencePage({Key? key, this.result}) : super(key: key);
+
+  final result;
+
+  // print(result);
 
   @override
   State<EvidencePage> createState() => _EvidencePageState();
@@ -9,22 +14,14 @@ class EvidencePage extends StatefulWidget {
 
 class _EvidencePageState extends State<EvidencePage> {
   @override
-
-  var report_number = '1234567890';
-  var evidence_name = 'John Doe';
-  var id_number = '1234567890';
-  var guardian_name = 'Jane Doe';
-  var address = 'Jl. Kenangan';
-  var date = '01-01-2000';
-
   Widget build(BuildContext context) {
+    final response = widget.result;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Data DPO',
-          style: TextStyle(
-            color: Colors.black
-          ),
+          style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -46,55 +43,46 @@ class _EvidencePageState extends State<EvidencePage> {
           SizedBox(height: 20),
           TextFormField(
             decoration: InputDecoration(
-              hintText: 'Nomor Laporan Polisi',
-              contentPadding: EdgeInsets.all(10)
-            ),
-            initialValue: report_number,
+                hintText: 'Nomor Laporan Polisi',
+                contentPadding: EdgeInsets.all(10)),
+            initialValue: response['report_number'],
             enabled: false,
           ),
           SizedBox(height: 20),
           TextFormField(
             decoration: InputDecoration(
-                hintText: 'Nama Tersangka',
-                contentPadding: EdgeInsets.all(10)
-            ),
-            initialValue: evidence_name,
+                hintText: 'Nama Tersangka', contentPadding: EdgeInsets.all(10)),
+            initialValue: response['full_name'],
             enabled: false,
           ),
           SizedBox(height: 20),
           TextFormField(
             decoration: InputDecoration(
-                hintText: 'NIK Tersangka',
-                contentPadding: EdgeInsets.all(10)
-            ),
-            initialValue: id_number,
+                hintText: 'NIK Tersangka', contentPadding: EdgeInsets.all(10)),
+            initialValue: response['nik'],
             enabled: false,
           ),
           SizedBox(height: 20),
           TextFormField(
             decoration: InputDecoration(
                 hintText: 'Nama Orang Tua Tersangka',
-                contentPadding: EdgeInsets.all(10)
-            ),
-            initialValue: guardian_name,
+                contentPadding: EdgeInsets.all(10)),
+            initialValue: response['parent_name'],
             enabled: false,
           ),
           SizedBox(height: 20),
           TextFormField(
             decoration: InputDecoration(
                 hintText: 'Alamat Tersangka',
-                contentPadding: EdgeInsets.all(10)
-            ),
-            initialValue: address,
+                contentPadding: EdgeInsets.all(10)),
+            initialValue: response['address'],
             enabled: false,
           ),
           SizedBox(height: 20),
           TextFormField(
             decoration: InputDecoration(
-                hintText: 'Nomor Laporan Polisi',
-                contentPadding: EdgeInsets.all(10)
-            ),
-            initialValue: date,
+                hintText: 'Deskripsi', contentPadding: EdgeInsets.all(10)),
+            initialValue: response['description'],
             enabled: false,
           ),
         ],

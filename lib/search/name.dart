@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:polres_app/pages/evidence.dart';
 import 'package:polres_app/services/suspect.dart';
 
-class NikPage extends StatefulWidget {
-  const NikPage({Key? key}) : super(key: key);
+class NamePage extends StatefulWidget {
+  const NamePage({Key? key}) : super(key: key);
 
   @override
-  State<NikPage> createState() => _NikPageState();
+  State<NamePage> createState() => _NamePageState();
 }
 
-class _NikPageState extends State<NikPage> {
+class _NamePageState extends State<NamePage> {
   final TextEditingController idNumber = TextEditingController();
 
   @override
@@ -17,7 +17,7 @@ class _NikPageState extends State<NikPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Pencarian dengan NIK',
+            'Pencarian dengan Nama',
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: Colors.transparent,
@@ -44,12 +44,14 @@ class _NikPageState extends State<NikPage> {
                 height: 40,
                 child: TextButton(
                   onPressed: () async {
-                    final response = await Suspect().searchById(idNumber.text);
+                    final response =
+                        await Suspect().searchByName(idNumber.text);
 
                     if (response['success']) {
+                      // print(response);
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return EvidencePage(result: response['data']);
+                        return EvidencePage(result: response['data'][0]);
                       }));
                     }
                   },
