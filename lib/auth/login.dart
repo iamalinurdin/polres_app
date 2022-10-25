@@ -6,6 +6,7 @@ import 'package:polres_app/auth/reset_password.dart';
 import 'package:polres_app/pages/home.dart';
 import 'package:polres_app/services/auth.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -105,6 +106,9 @@ class _LoginPageState extends State<LoginPage> {
                   var response = await Auth().login(email.text, password.text);
 
                   if (response['success']) {
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.setString('TOKEN', response['token']);
+
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return HomePage();
