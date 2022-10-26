@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:polres_app/model/suspect.dart';
+import 'package:polres_app/services/activity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Suspect {
@@ -39,9 +40,14 @@ class Suspect {
       'Authorization': 'Bearer $token'
     });
 
-    print('object');
+    List responseJson = jsonDecode(response.body)['data']
+        .map((data) => new SuspectModel(
+            name: data['full_name'],
+            time: data['createdAt'],
+            number: data['report_number']))
+        .toList();
 
-    return jsonDecode(response.body);
+    return responseJson;
     // print(response.body);
   }
 

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.polres_app">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="polres_app"
         android:name="${applicationName}"
@@ -20,6 +21,8 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+              <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyA3rkjzqXe0YyqoM5aBrhrzIRMNS5evGJM"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

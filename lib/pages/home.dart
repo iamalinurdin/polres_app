@@ -7,6 +7,9 @@ import 'package:polres_app/services/activity.dart';
 import 'package:polres_app/services/suspect.dart';
 import 'package:polres_app/pages/create.dart';
 import 'package:timelines/timelines.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,6 +30,12 @@ class _HomePageState extends State<HomePage> {
   ];
 
   int currentStep = 0;
+
+  @override
+  initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -207,6 +216,48 @@ class _HomePageState extends State<HomePage> {
               ),
               Text(
                 '${activity.user}',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 17),
+              )
+            ],
+          )),
+      color: Colors.red[900],
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    );
+  }
+
+  Card suspectCard(SuspectModel suspectModel) {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+      child: Padding(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${suspectModel.name}',
+                    style: TextStyle(fontSize: 17, color: Colors.white),
+                  ),
+                  Text(
+                    '${suspectModel.time}',
+                    style: TextStyle(color: Colors.white),
+                  )
+                ],
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Penyidik Resmob',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                '${suspectModel.number}',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

@@ -15,7 +15,7 @@ class WelcomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('images/santun.png'),
+            Image.asset('images/logo-polda.png', width: 150, height: 150,),
             SizedBox(height: 50),
             Text(
               'Halo, Selamat datang di Aplikasi Santun Anti Tawuran',
