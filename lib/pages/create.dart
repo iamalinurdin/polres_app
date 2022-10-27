@@ -1,4 +1,11 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateTargetPage extends StatefulWidget {
   const CreateTargetPage({Key? key}) : super(key: key);
@@ -8,6 +15,11 @@ class CreateTargetPage extends StatefulWidget {
 }
 
 class _CreateTargetPageState extends State<CreateTargetPage> {
+  Future pickImage () async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,9 +110,7 @@ class _CreateTargetPageState extends State<CreateTargetPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () => pickImage(),
                   child: Icon(
                     Icons.person,
                     size: 100,
