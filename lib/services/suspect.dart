@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
@@ -10,22 +12,45 @@ class Suspect {
   final _token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlrIjoiMTIzNDU2Nzg5MCIsImlhdCI6MTY2NjYzMTY1MywiZXhwIjoxNjY2NjM1MjUzfQ.XPdd9ipyZ5z6uDzc74UBzRvF04AYkkHf-dDNy5hjCbg';
 
-  Future store(Object payload) async {
+  Future store(payload) async {
     final prefs = await SharedPreferences.getInstance();
 
     final token = prefs.getString('TOKEN');
 
-    final response = await http.post(Uri.parse('$baseUrl/suspect/add'),
-        headers: {
-          //   'Content-Type': 'application/json; charset=UTF-8',
-          //   'Accept': 'application/json'
-          'Authorization': 'Bearer $token'
-        },
-        body: payload);
+    // final response = await http.post(Uri.parse('$baseUrl/suspect/add'),
+    //     headers: {
+    //       'Authorization': 'Bearer $token'
+    //     },
+    //     body: payload);
+    final url = Uri.parse('$baseUrl/suspect/add');
+    final request = new http.MultipartRequest('POST', url);
+    
+    request.headers.addAll({
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'multipart/form-data'
+    });
+    
+    // final newPayload = jsonEncode(payload);
+    request.fields['report_number'] = payload['report_number'];
+    request.fields['full_name'] = payload['full_name'];
+    request.fields['nik'] = payload['nik'];
+    request.fields['parent_name'] = payload['parent_name'];
+    request.fields['address'] = payload['address'];
+    request.fields['description'] = payload['description'];
+    request.fields['incident_date'] = payload['incident_date'];
+    request.files.add(
+        http.MultipartFile(
+            'photo',
+            File(payload['photo'].path).readAsBytes().asStream(),
+            File(payload['photo'].path).lengthSync()
+        )
+    );
 
-    // print(payload);
+    final response = await request.send();
+    final responsed = await http.Response.fromStream(response);
+    // print(responsed.body);
 
-    return jsonDecode(response.body);
+    return jsonDecode(responsed.body);
   }
 
   Future retrieve() async {
