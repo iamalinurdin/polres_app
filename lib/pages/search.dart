@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:polres_app/search/name.dart';
 import 'package:polres_app/search/nik.dart';
 import 'package:polres_app/search/number.dart';
@@ -11,6 +15,24 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  File? image;
+
+  Future pickImage () async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+      if (image == null) return;
+
+      final tempImage = File(image.path);
+
+      setState(() {
+        this.image = tempImage;
+      });
+    } on PlatformException catch (e) {
+      print('failed to pick image: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,9 +104,7 @@ class _SearchPageState extends State<SearchPage> {
                       backgroundColor: Colors.red[900],
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15))),
-                  onPressed: () {
-                    print('pencarian foto');
-                  },
+                  onPressed: () => pickImage(),
                 ),
               ),
               SizedBox(height: 20),

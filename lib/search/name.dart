@@ -33,7 +33,7 @@ class _NamePageState extends State<NamePage> {
               TextFormField(
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.mail),
-                    hintText: 'NRP',
+                    hintText: 'Nama',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0))),
                 controller: idNumber,

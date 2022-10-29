@@ -33,7 +33,7 @@ class _NikPageState extends State<NikPage> {
               TextFormField(
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.mail),
-                    hintText: 'NRP',
+                    hintText: 'NIK',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0))),
                 controller: idNumber,

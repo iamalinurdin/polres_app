@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
     });
     final res = jsonDecode(response.body);
 
-    // print(res['data']);
+    print('rendred');
 
     List<Activity> activities = [];
 
@@ -305,7 +305,9 @@ class _HomePageState extends State<HomePage> {
                         }
                     );
                   } else {
-                    return CircularProgressIndicator();
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   }
                 },
               )

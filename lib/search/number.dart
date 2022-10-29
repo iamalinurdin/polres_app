@@ -33,7 +33,7 @@ class _NumberPageState extends State<NumberPage> {
               TextFormField(
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.mail),
-                    hintText: 'NRP',
+                    hintText: 'No. Laporan',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0))),
                 controller: idNumber,
