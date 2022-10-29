@@ -25,7 +25,7 @@ class _CreateTargetPageState extends State<CreateTargetPage> {
   TextEditingController address = TextEditingController();
   // TextEditingController incident_date = TextEditingController();
   TextEditingController description = TextEditingController();
-  DateTime? incident_date;
+  DateTime? incident_date = null;
 
   Future pickImage () async {
     try {
@@ -118,7 +118,7 @@ class _CreateTargetPageState extends State<CreateTargetPage> {
           TextFormField(
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.calendar_month),
-              hintText: 'Tanggal kejadian',
+              hintText: incident_date == null ? 'Tanggal kejadian' : incident_date.toString(),
               suffixIcon: Icon(Icons.keyboard_arrow_down)
             ),
             // controller: incident_date,
