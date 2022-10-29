@@ -5,6 +5,7 @@ import 'package:polres_app/auth/register.dart';
 import 'package:polres_app/auth/reset_password.dart';
 import 'package:polres_app/pages/home.dart';
 import 'package:polres_app/services/auth.dart';
+import 'package:polres_app/services/suspect.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -103,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
               textDirection: TextDirection.rtl,
               child: ElevatedButton.icon(
                 onPressed: () async {
-                  var response = await Auth().login(email.text, password.text);
+                  final response = await Auth().login(email.text, password.text);
 
                   if (response['success']) {
                     final prefs = await SharedPreferences.getInstance();

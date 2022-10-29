@@ -61,25 +61,24 @@ class Suspect {
 
   Future retrieve() async {
     final prefs = await SharedPreferences.getInstance();
-
     final token = prefs.getString('TOKEN');
-
-    final response =
-        await http.get(Uri.parse('$baseUrl/suspect/list'), headers: {
-      //   'Content-Type': 'application/json; charset=UTF-8',
-      //   'Accept': 'application/json'
+    final url = Uri.parse('$baseUrl/suspect/list');
+    final response = await http.get(url, headers: {
+      'accept':'application/json',
       'Authorization': 'Bearer $token'
     });
 
-    List responseJson = jsonDecode(response.body)['data']
-        .map((data) => new SuspectModel(
-            name: data['full_name'],
-            time: data['createdAt'],
-            number: data['report_number']))
-        .toList();
+    print(response);
 
-    return responseJson;
-    // print(response.body);
+    // List responseJson = jsonDecode(response.body)['data']
+    //     .map((data) => new SuspectModel(
+    //         name: data['full_name'],
+    //         time: data['createdAt'],
+    //         number: data['report_number']))
+    //     .toList();
+    //
+    // return responseJson;
+    return jsonDecode(response.body);
   }
 
   Future searchById(String id) async {

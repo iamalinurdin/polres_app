@@ -10,6 +10,7 @@ import 'package:timelines/timelines.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:core';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,24 +21,68 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  List<Activity> activities = [
-    Activity(
-        user: 'John Doe', time: '17:00', activity: 'Input data target baru'),
-    Activity(
-        user: 'Jane Doe', time: '17:00', activity: 'Input data target baru'),
-    Activity(user: 'Mr. X', time: '17:00', activity: 'Input data target baru'),
-    Activity(user: 'Mrs. X', time: '17:00', activity: 'Input data target baru'),
-  ];
+  // List<Activity> activities = [
+  //   Activity(
+  //       user: 'John Doe', time: '17:00', activity: 'Input data target baru'),
+  //   Activity(
+  //       user: 'Jane Doe', time: '17:00', activity: 'Input data target baru'),
+  //   Activity(user: 'Mr. X', time: '17:00', activity: 'Input data target baru'),
+  //   Activity(user: 'Mrs. X', time: '17:00', activity: 'Input data target baru'),
+  // ];
 
-  int currentStep = 0;
+  List<Activity> activities = [];
 
-  @override
-  initState() {
-    // TODO: implement initState
-    super.initState();
+
+  Future retrieve() async {
+    final baseUrl = 'http://156.67.220.96:3000';
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('TOKEN');
+    final url = Uri.parse('$baseUrl/suspect/list');
+    final response = await http.get(url, headers: {
+      'accept':'application/json',
+      'Authorization': 'Bearer $token'
+    });
+    final res = jsonDecode(response.body);
+
+    // print(res['data']);
+
+    // List<Activity> activities = [];
+
+    for (var u in res['data']) {
+      // print(u['report_number']);
+      Activity suspect = Activity(activity: u['report_number'], time: u['createdAt'], user: u['full_name']);
+      activities.add(suspect);
+    }
+
+    print(activities.length);
+
+    return activities;
+
+    // print('ok');
+
+    // List responseJson = jsonDecode(response.body)['data']
+    //     .map((data) => new SuspectModel(
+    //         name: data['full_name'],
+    //         time: data['createdAt'],
+    //         number: data['report_number']))
+    //     .toList();
+    //
+    // return responseJson;
+    // return jsonDecode(response.body);
   }
 
+  // void initState () async {
+  //   super.initState();
+  //   await retrieve();
+  // }
+
+  // Future.delayed(Duration.zero, () => {
+  //
+  // });
+
   Widget build(BuildContext context) {
+    retrieve();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Menu'),
@@ -177,6 +222,23 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          // Container(
+          //   child: Card(
+          //     child: FutureBuilder(
+          //       future: retrieve(),
+          //       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          //         // print(snapshot);
+          //         if (snapshot.hasData) {
+          //           if (snapshot.data != null) {
+          //
+          //           }
+          //         } else {
+          //           return new CircularProgressIndicator();
+          //         }
+          //       },
+          //     ),
+          //   )
+          // )
           Column(
               children: activities
                   .map((activity) => activityCard(activity))
