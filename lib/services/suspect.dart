@@ -27,8 +27,18 @@ class Suspect {
     
     request.headers.addAll({
       'Authorization': 'Bearer $token',
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
+      "Keep-Alive": "timeout=5, max=1000"
     });
+
+    final photo = await http.MultipartFile.fromPath(
+        'photo',
+        payload['photo'].path
+        // payload['photo'],
+        // payload['photo'],
+        // File(payload['photo'].path).readAsBytes().asStream(),
+        // File(payload['photo'].path).lengthSync()
+    );
     
     // final newPayload = jsonEncode(payload);
     request.fields['report_number'] = payload['report_number'];
@@ -38,13 +48,9 @@ class Suspect {
     request.fields['address'] = payload['address'];
     request.fields['description'] = payload['description'];
     request.fields['incident_date'] = payload['incident_date'];
-    request.files.add(
-        http.MultipartFile(
-            'photo',
-            File(payload['photo'].path).readAsBytes().asStream(),
-            File(payload['photo'].path).lengthSync()
-        )
-    );
+    request.files.add(photo);
+
+    // print(File(payload['photo'].path).readAsBytes().asStream());
 
     final response = await request.send();
     final responsed = await http.Response.fromStream(response);

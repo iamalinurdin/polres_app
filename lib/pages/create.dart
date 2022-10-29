@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:polres_app/pages/home.dart';
 import 'package:polres_app/services/suspect.dart';
 
 class CreateTargetPage extends StatefulWidget {
@@ -192,6 +193,14 @@ class _CreateTargetPageState extends State<CreateTargetPage> {
               });
 
               print(response);
+
+              if (response['success']) {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HomePage();
+                }));
+              }
+
+              // print(response);
 
               // print(report_number.text);
               // print(full_name.text);
