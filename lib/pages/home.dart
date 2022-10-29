@@ -54,31 +54,8 @@ class _HomePageState extends State<HomePage> {
       activities.add(suspect);
     }
 
-    // print(activities.length);
-
     return activities;
-
-    // print('ok');
-
-    // List responseJson = jsonDecode(response.body)['data']
-    //     .map((data) => new SuspectModel(
-    //         name: data['full_name'],
-    //         time: data['createdAt'],
-    //         number: data['report_number']))
-    //     .toList();
-    //
-    // return responseJson;
-    // return jsonDecode(response.body);
   }
-
-  // void initState () async {
-  //   super.initState();
-  //   await retrieve();
-  // }
-
-  // Future.delayed(Duration.zero, () => {
-  //
-  // });
 
   Widget build(BuildContext context) {
     // final activities = retrieve();
@@ -112,231 +89,229 @@ class _HomePageState extends State<HomePage> {
       //     itemCount: 10,
       //   ),
       // ),
-      body: FutureBuilder (
-        future: retrieve(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-                    child: Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  snapshot.data[index].activity,
-                                  style: TextStyle(fontSize: 17, color: Colors.white),
-                                ),
-                                Text(
-                                  snapshot.data[index].time,
-                                  style: TextStyle(color: Colors.white),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              'Nama TSK',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text(
-                              snapshot.data[index].user,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 17),
-                            )
-                          ],
-                        )),
-                    color: Colors.red[900],
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  );
-                }
-            );
-          } else {
-            return CircularProgressIndicator();
-          }
-        },
-      )
-      // Expanded(
-      //   // height: MediaQuery.of(context).size.height,
-      //   child: ListView(
-      //     padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-      //     children: [
-      //       Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         children: [
-      //           Expanded(
-      //             child: TextButton(
-      //               onPressed: () {
-      //                 Navigator.push(context,
-      //                     MaterialPageRoute(builder: (context) {
-      //                       return CreateTargetPage();
-      //                     }));
-      //               },
-      //               child: Column(
-      //                 mainAxisAlignment: MainAxisAlignment.center,
-      //                 children: [
-      //                   Icon(
-      //                     Icons.person_add_alt_1,
-      //                     size: 50,
-      //                     color: Colors.red[900],
-      //                   ),
-      //                   SizedBox(height: 10),
-      //                   Text(
-      //                     'Penambahan Data',
-      //                     style: TextStyle(color: Colors.red[900]),
-      //                     textAlign: TextAlign.center,
-      //                   )
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //           Expanded(
-      //             child: TextButton(
-      //               onPressed: () {
-      //                 Navigator.push(context,
-      //                     MaterialPageRoute(builder: (context) {
-      //                       return SearchPage();
-      //                     }));
-      //               },
-      //               child: Column(
-      //                 mainAxisAlignment: MainAxisAlignment.center,
-      //                 children: [
-      //                   Icon(
-      //                     Icons.person,
-      //                     size: 50,
-      //                     color: Colors.red[900],
-      //                   ),
-      //                   SizedBox(height: 10),
-      //                   Text(
-      //                     'Pencarian DPO',
-      //                     style: TextStyle(color: Colors.red[900]),
-      //                     textAlign: TextAlign.center,
-      //                   )
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //           Expanded(
-      //             child: TextButton(
-      //                 onPressed: () {
-      //                   print('penambahan data');
-      //                 },
-      //                 child: Column(
-      //                   mainAxisAlignment: MainAxisAlignment.center,
-      //                   children: [
-      //                     Icon(
-      //                       Icons.settings,
-      //                       size: 50,
-      //                       color: Colors.red[900],
-      //                     ),
-      //                     SizedBox(height: 10),
-      //                     Text(
-      //                       'Customize',
-      //                       style: TextStyle(color: Colors.red[900]),
-      //                       textAlign: TextAlign.center,
-      //                     )
-      //                   ],
-      //                 )),
-      //           ),
-      //         ],
-      //       ),
-      //       Row(
-      //         children: [
-      //           Expanded(
-      //             child: TextButton(
-      //                 onPressed: () {
-      //                   Navigator.push(context,
-      //                       MaterialPageRoute(builder: (context) {
-      //                         return MapsPage();
-      //                       }));
-      //                 },
-      //                 child: Column(
-      //                   mainAxisAlignment: MainAxisAlignment.center,
-      //                   children: [
-      //                     Icon(
-      //                       Icons.map,
-      //                       size: 50,
-      //                       color: Colors.red[900],
-      //                     ),
-      //                     SizedBox(height: 10),
-      //                     Text(
-      //                       'Peta',
-      //                       style: TextStyle(color: Colors.red[900]),
-      //                       textAlign: TextAlign.center,
-      //                     )
-      //                   ],
-      //                 )),
-      //           ),
-      //         ],
-      //       ),
-      //       FutureBuilder (
-      //         future: retrieve(),
-      //         builder: (context, AsyncSnapshot snapshot) {
-      //           if (snapshot.hasData) {
-      //             return ListView.builder(
-      //                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-      //                 itemCount: snapshot.data.length,
-      //                 itemBuilder: (context, index) {
-      //                   return Card(
-      //                     margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-      //                     child: Padding(
-      //                         padding: EdgeInsets.all(15),
-      //                         child: Column(
-      //                           crossAxisAlignment: CrossAxisAlignment.stretch,
-      //                           children: [
-      //                             Row(
-      //                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                               children: [
-      //                                 Text(
-      //                                   snapshot.data[index].activity,
-      //                                   style: TextStyle(fontSize: 17, color: Colors.white),
-      //                                 ),
-      //                                 Text(
-      //                                   snapshot.data[index].time,
-      //                                   style: TextStyle(color: Colors.white),
-      //                                 )
-      //                               ],
-      //                             ),
-      //                             SizedBox(height: 20),
-      //                             Text(
-      //                               'Nama TSK',
-      //                               style: TextStyle(
-      //                                 color: Colors.white,
-      //                               ),
-      //                             ),
-      //                             Text(
-      //                               snapshot.data[index].user,
-      //                               style: TextStyle(
-      //                                   fontWeight: FontWeight.bold,
-      //                                   color: Colors.white,
-      //                                   fontSize: 17),
-      //                             )
-      //                           ],
-      //                         )),
-      //                     color: Colors.red[900],
-      //                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      //                   );
-      //                 }
+      // body: FutureBuilder (
+      //   future: retrieve(),
+      //   builder: (context, AsyncSnapshot snapshot) {
+      //     if (snapshot.hasData) {
+      //       return ListView.builder(
+      //           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+      //           itemCount: snapshot.data.length,
+      //           itemBuilder: (context, index) {
+      //             return Card(
+      //               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+      //               child: Padding(
+      //                   padding: EdgeInsets.all(15),
+      //                   child: Column(
+      //                     crossAxisAlignment: CrossAxisAlignment.stretch,
+      //                     children: [
+      //                       Row(
+      //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                         children: [
+      //                           Text(
+      //                             snapshot.data[index].activity,
+      //                             style: TextStyle(fontSize: 17, color: Colors.white),
+      //                           ),
+      //                           Text(
+      //                             snapshot.data[index].time,
+      //                             style: TextStyle(color: Colors.white),
+      //                           )
+      //                         ],
+      //                       ),
+      //                       SizedBox(height: 20),
+      //                       Text(
+      //                         'Nama TSK',
+      //                         style: TextStyle(
+      //                           color: Colors.white,
+      //                         ),
+      //                       ),
+      //                       Text(
+      //                         snapshot.data[index].user,
+      //                         style: TextStyle(
+      //                             fontWeight: FontWeight.bold,
+      //                             color: Colors.white,
+      //                             fontSize: 17),
+      //                       )
+      //                     ],
+      //                   )),
+      //               color: Colors.red[900],
+      //               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       //             );
-      //           } else {
-      //             return CircularProgressIndicator();
       //           }
-      //         },
-      //       )
-      //     ],
-      //   ),
+      //       );
+      //     } else {
+      //       return CircularProgressIndicator();
+      //     }
+      //   },
       // )
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return CreateTargetPage();
+                        }));
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.person_add_alt_1,
+                        size: 50,
+                        color: Colors.red[900],
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Penambahan Data',
+                        style: TextStyle(color: Colors.red[900]),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return SearchPage();
+                        }));
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.person,
+                        size: 50,
+                        color: Colors.red[900],
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Pencarian DPO',
+                        style: TextStyle(color: Colors.red[900]),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: TextButton(
+                    onPressed: () {
+                      print('penambahan data');
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.settings,
+                          size: 50,
+                          color: Colors.red[900],
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Customize',
+                          style: TextStyle(color: Colors.red[900]),
+                          textAlign: TextAlign.center,
+                        )
+                      ],
+                    )),
+              ),
+            ],
+          ),
+          Row(
+        children: [
+          Expanded(
+            child: TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                        return MapsPage();
+                      }));
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.map,
+                      size: 50,
+                      color: Colors.red[900],
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Peta',
+                      style: TextStyle(color: Colors.red[900]),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                )),
+          ),
+        ],
+      ),
+          Expanded(
+              child: FutureBuilder (
+                future: retrieve(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                            child: Padding(
+                                padding: EdgeInsets.all(15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          snapshot.data[index].activity,
+                                          style: TextStyle(fontSize: 17, color: Colors.white),
+                                        ),
+                                        Text(
+                                          snapshot.data[index].time,
+                                          style: TextStyle(color: Colors.white),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 20),
+                                    Text(
+                                      'Nama TSK',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      snapshot.data[index].user,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontSize: 17),
+                                    )
+                                  ],
+                                )),
+                            color: Colors.red[900],
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          );
+                        }
+                    );
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                },
+              )
+          )
+        ],
+      )
 
     );
   }
