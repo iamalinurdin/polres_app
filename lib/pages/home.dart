@@ -3,6 +3,7 @@ import 'package:polres_app/model/suspect.dart';
 import 'package:polres_app/pages/maps.dart';
 import 'package:polres_app/pages/search.dart';
 import 'package:polres_app/pages/setting.dart';
+import 'package:polres_app/pages/tsk_tawuran.dart';
 import 'package:polres_app/services/activity.dart';
 import 'package:polres_app/services/suspect.dart';
 import 'package:polres_app/pages/create.dart';
@@ -11,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:core';
+import 'package:polres_app/pages/tambah_tawuran.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -226,34 +228,84 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           Row(
-        children: [
-          Expanded(
-            child: TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                        return MapsPage();
-                      }));
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.map,
-                      size: 50,
-                      color: Colors.red[900],
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Peta',
-                      style: TextStyle(color: Colors.red[900]),
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                )),
+            children: [
+              Expanded(
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return TambahTawuranPage();
+                          }));
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add,
+                          size: 50,
+                          color: Colors.red[900],
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Tambah Data Tawuran',
+                          style: TextStyle(color: Colors.red[900]),
+                          textAlign: TextAlign.center,
+                        )
+                      ],
+                    )),
+              ),
+              Expanded(
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return TskTawuranPage();
+                          }));
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.list,
+                          size: 50,
+                          color: Colors.red[900],
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Data Tawuran',
+                          style: TextStyle(color: Colors.red[900]),
+                          textAlign: TextAlign.center,
+                        )
+                      ],
+                    )),
+              ),
+              // Expanded(
+              //   child: TextButton(
+              //       onPressed: () {
+              //         Navigator.push(context,
+              //             MaterialPageRoute(builder: (context) {
+              //               return MapsPage();
+              //             }));
+              //       },
+              //       child: Column(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Icon(
+              //             Icons.map,
+              //             size: 50,
+              //             color: Colors.red[900],
+              //           ),
+              //           SizedBox(height: 10),
+              //           Text(
+              //             'Peta',
+              //             style: TextStyle(color: Colors.red[900]),
+              //             textAlign: TextAlign.center,
+              //           )
+              //         ],
+              //       )),
+              // ),
+            ],
           ),
-        ],
-      ),
           Expanded(
               child: FutureBuilder (
                 future: retrieve(),
